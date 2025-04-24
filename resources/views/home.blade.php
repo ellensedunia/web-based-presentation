@@ -31,7 +31,7 @@
             <div class="grid md:grid-cols-2 gap-6">
                 @foreach($tutorials as $t)
                     <div class="bg-white p-5 rounded-xl shadow hover:shadow-md transition-all">
-                        <h2 class="text-lg font-bold text-indigo-700 mb-1">{{ $t->title }}</h2>
+                        <h2 class="text-lg font-bold text-blue-700 mb-1">{{ $t->title }}</h2>
                         <p class="text-sm text-gray-600 mb-1">
                             <i class="fas fa-book mr-1"></i> Kode MK: {{ $t->kode_makul }}
                         </p>
@@ -45,13 +45,13 @@
                         <div class="flex justify-between gap-2 text-sm">
                         <a href="{{ route('public.presentation', ['slug' => Str::slug($t->title), 'unique_filename' => $t->unique_filename]) }}"
                                class="flex-1 text-center bg-blue-100 text-blue-700 px-3 py-2 rounded hover:bg-blue-200 transition-all">
-                                <i class="fas fa-eye mr-1"></i> Lihat Tutorial
+                               <i class="fa-regular fa-folder-open"></i> Lihat Tutorial
                             </a>
                          
                             @if($t->status === 'show')
                                 <a href="{{ route('public.finished', ['slug' => Str::slug($t->title), 'unique_filename_finished' => $t->unique_filename_finished]) }}"
                                 class="flex-1 text-center bg-green-100 text-green-700 px-3 py-2 rounded hover:bg-green-200 transition-all">
-                                    <i class="fas fa-file-pdf mr-1"></i> Download PDF
+                                <i class="fa-regular fa-share-from-square"></i> Download PDF
                                 </a>
                             @endif
                         </div>
@@ -61,9 +61,9 @@
         @else
             <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-5 rounded shadow">
                 <h3 class="font-bold text-lg mb-1">
-                    <i class="fas fa-info-circle mr-1"></i> Belum Ada Materi
+                    <i class="fas fa-info-circle mr-1"></i> Belum ada materi.
                 </h3>
-                <p class="text-sm">Saat ini belum ada tutorial yang tersedia. Silakan cek kembali nanti ya!</p>
+                <p class="text-sm">Silakan cek secara berkala.</p>
             </div>
         @endif
     </main>

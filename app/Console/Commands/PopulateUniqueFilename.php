@@ -27,28 +27,28 @@ class PopulateUniqueFilename extends Command
      */
     public function handle()
     {
-        // Mulai transaksi database untuk memastikan integritas data
+        //transaksi database untuk memastikan integritas data
         DB::beginTransaction();
 
         try {
-            // Dapatkan semua ID dari tabel tutorials yang memiliki unique_filename null
+            //semua ID dari tabel tutorials yang memiliki unique_filename null
             $tutorialIds = DB::table('tutorials')
                 ->whereNull('unique_filename')
                 ->pluck('id');
 
-            // Loop melalui setiap ID dan update unique_filename dengan UUID
+            //loop melalui setiap ID dan update unique_filename dengan UUID
             foreach ($tutorialIds as $id) {
                 DB::table('tutorials')
                     ->where('id', $id)
                     ->update(['unique_filename' => Str::uuid()]);
             }
 
-            // Commit transaksi jika semua update berhasil
+            //commit transaksi jika semua update berhasil
             DB::commit();
 
             $this->info('Successfully populated unique_filename column for ' . count($tutorialIds) . ' tutorials.');
         } catch (\Exception $e) {
-            // Rollback transaksi jika terjadi kesalahan
+            //rollback transaksi jika terjadi kesalahan
             DB::rollback();
 
             $this->error('An error occurred: ' . $e->getMessage());

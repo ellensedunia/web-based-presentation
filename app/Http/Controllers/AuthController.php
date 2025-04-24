@@ -14,7 +14,7 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request)
+    public function login(Request $request)     //proses login
     {
         $response = Http::post('https://jwt-auth-eight-neon.vercel.app/login', [
             'email' => $request->email,
@@ -26,7 +26,7 @@ class AuthController extends Controller
             $payload = $this->decodeJwtPayload($token);
         
             Session::put('refreshToken', $token);
-            Session::put('user_email', $payload['email']); // ✅ now available
+            Session::put('user_email', $payload['email']); 
         
             return redirect()->route('admin.dashboard');
         }
@@ -47,13 +47,13 @@ class AuthController extends Controller
         return json_decode($decoded, true);
     }
     
-    public function logout()
+    public function logout()    //proses logout
     {
         $token = Session::get('refreshToken');
     
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
-        ])->get('https://jwt-auth-eight-neon.vercel.app/logout'); // ⬅️ ubah jadi GET
+        ])->get('https://jwt-auth-eight-neon.vercel.app/logout'); 
     
         if ($response->successful() && $response->body() === 'OK') {
             Session::flush();

@@ -46,7 +46,20 @@
                             @endif
                         </td>
                         <td class="px-4 py-2">{{ $detail->order }}</td>
-                        <td class="px-4 py-2">{{ ucfirst($detail->status) }}</td>
+                        <td class="px-4 py-2">
+                            <form method="POST" action="{{ route('details.update', [$tutorial->id, $detail->id]) }}">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="toggle_status" value="1">
+                                <button
+                                    type="submit"
+                                    class="px-2 py-1 rounded text-xs font-semibold {{ $detail->status === 'show' ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-gray-300 text-gray-700 hover:bg-gray-400' }}"
+                                >
+                                    {{ $detail->status === 'show' ? 'Show' : 'Hide' }}
+                                </button>
+                                <input type="hidden" name="status" value="{{ $detail->status === 'show' ? 'hide' : 'show' }}">
+                            </form>
+                        </td>
                         <td class="px-4 py-2 flex gap-2">
                             <a href="{{ route('details.edit', [$tutorial->id, $detail->id])  }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs">
                             Edit </a>

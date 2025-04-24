@@ -2,9 +2,6 @@
 
 @section('content')
 
-
-
-
 <div class="p-6 max-w-3xl mx-auto">
 <h1 class="text-2xl font-bold mb-6">Edit Detail Tutorial: 
     <span class="text-indigo-600">{{ $tutorial->title }}</span>
@@ -50,13 +47,13 @@
             <input type="number" name="order" class="w-full border p-2 rounded" value="{{ old('order', $detail->order) }}">
         </div>
 
-        <div>
+        <!--<div>
             <label class="block font-medium mb-1">Status</label>
             <select name="status" class="w-full border p-2 rounded">
                 <option value="show" {{ $detail->status === 'show' ? 'selected' : '' }}>Show</option>
                 <option value="hide" {{ $detail->status === 'hide' ? 'selected' : '' }}>Hide</option>
             </select>
-        </div>
+        </div> -->
 
         <div class="flex justify-end">
             <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">

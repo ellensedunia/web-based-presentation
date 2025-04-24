@@ -39,7 +39,7 @@
                 </td>
                 <td class="px-4 py-2">{{ $t->title }}</td>
                 <td class="px-4 py-2">
-                    <span class="inline-block px-2 py-1 rounded text-white text-xs {{ $t->status === 'hide' ? 'bg-yellow-500' : 'bg-green-600' }}">
+                    <span class="inline-block px-2 py-1 rounded text-white text-xs {{ $t->status === 'hide' ? 'bg-gray-500' : 'bg-green-600' }}">
                         {{ ucfirst($t->status ?? 'show') }}
                     </span>
                 </td>
@@ -49,7 +49,7 @@
                         @method('PUT')
                         <input type="hidden" name="toggle_status" value="1">
                         <input type="hidden" name="status" value="{{ $t->status }}">
-                        <button class="px-3 py-1 rounded text-white text-sm {{ $t->status == 'hide' ? 'bg-green-600 hover:bg-green-700' : 'bg-yellow-500 hover:bg-yellow-600' }}">
+                        <button class="px-3 py-1 rounded text-white text-sm {{ $t->status == 'hide' ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-500 hover:bg-gray-600' }}">
                             {{ $t->status == 'hide' ? 'Show' : 'Hide' }}
                         </button>
                     </form>
@@ -57,7 +57,7 @@
                 <td class="px-4 py-2 space-x-2">
                     
                     <a href="{{ route('public.presentation', ['slug' => Str::slug($t->title), 'unique_filename' => $t->unique_filename]) }}"
-                       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs">
+                       class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-1 px-2 rounded text-xs">
                         Presentation
                     </a>
                    
@@ -65,7 +65,7 @@
                 <td class="px-4 py-2">
                     
                     <a href="{{ route('public.finished', ['slug' => Str::slug($t->title), 'unique_filename_finished' => $t->unique_filename_finished]) }}"
-                       class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-xs">
+                       class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded text-xs">
                         PDF
                     </a>
                    

@@ -37,13 +37,13 @@
             <input type="number" name="order" class="w-full border p-2 rounded" value="{{ old('order', 1)}}"  min="1">
         </div>
 
-        <div>
+        <!--<div>
             <label class="block font-medium">Status</label>
             <select name="status" class="w-full border p-2 rounded">
                 <option value="show">Show</option>
                 <option value="hide" selected>Hide</option>
             </select>
-        </div>
+        </div>-->
 
         <div class="text-right">
             <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">

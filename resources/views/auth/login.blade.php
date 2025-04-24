@@ -22,7 +22,6 @@
     </div>
 @endif
 
-
         <label class="block mb-2">Email</label>
         <input type="email" name="email" required class="w-full p-2 border rounded mb-4" />
 

@@ -8,7 +8,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class PublicTutorialController extends Controller
 {
-    // ✅ Halaman presentasi (auto refresh, hanya status 'show')
+    //halaman presentasi (auto refresh, hanya status 'show')
     public function showPresentation($slug, $unique_filename)
     {
         $tutorial = Tutorial::where('unique_filename', $unique_filename)
@@ -23,7 +23,7 @@ class PublicTutorialController extends Controller
         return view('public.presentation', compact('tutorial', 'details'));
     }
 
-    // ✅ Generate PDF dari semua detail tutorial (status 'show' dan 'hide')
+    //generate PDF dari semua detail tutorial (status 'show' dan 'hide')
     public function generatePdf($slug, $unique_filename_finished)
     {
         $tutorial = Tutorial::where('unique_filename_finished', $unique_filename_finished)

@@ -17,7 +17,7 @@ class TutorialDetailController extends Controller
         return view('tutorial_details.index', compact('tutorial', 'details'));
     }
 
-    public function create(Tutorial $tutorial)
+    public function create(Tutorial $tutorial)      //create detail tutorial
     {
         $token = Session::get('refreshToken');
 
@@ -32,7 +32,7 @@ class TutorialDetailController extends Controller
         return view('tutorial_details.create', compact('tutorial', 'namaMakul'));
     }
 
-    public function store(Request $request, Tutorial $tutorial)
+    public function store(Request $request, Tutorial $tutorial)     //simpan detail tutorial
     {
         $data = $request->validate([
             'text' => 'nullable|string',
@@ -48,7 +48,7 @@ class TutorialDetailController extends Controller
         }
         $detail = new TutorialDetail();
         $detail->tutorial_id = $tutorial->id;
-        $detail->kode_makul = $tutorial->kode_makul; // opsional kalau disimpan
+        $detail->kode_makul = $tutorial->kode_makul; 
         $detail->text = $request->text;
         $data['tutorial_id'] = $tutorial->id;
 
@@ -57,7 +57,7 @@ class TutorialDetailController extends Controller
         return redirect()->route('details.index', $tutorial->id)->with('success', 'Detail tutorial ditambahkan.');
     }
 
-    public function edit(Tutorial $tutorial, TutorialDetail $detail)
+    public function edit(Tutorial $tutorial, TutorialDetail $detail)    //edit detail tutorial
     {
         $token = Session::get('refreshToken');
 
@@ -71,8 +71,15 @@ class TutorialDetailController extends Controller
     return view('tutorial_details.edit', compact('tutorial', 'detail', 'namaMakul'));
     }
 
-    public function update(Request $request, Tutorial $tutorial, TutorialDetail $detail)
+    public function update(Request $request, Tutorial $tutorial, TutorialDetail $detail)    //update detail tutorial
     {
+        if ($request->has('toggle_status')) {
+            $detail->status = $detail->status === 'show' ? 'hide' : 'show';
+            $detail->save();
+    
+            return redirect()->route('details.index', $tutorial->id)->with('success', 'Status detail berhasil diubah.');
+        }
+
         $data = $request->validate([
             'text' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif',
@@ -83,7 +90,7 @@ class TutorialDetailController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            // Hapus gambar lama
+            //hapus gambar lama
             if ($detail->image) {
                 Storage::disk('public')->delete($detail->image);
             }
@@ -95,7 +102,7 @@ class TutorialDetailController extends Controller
         return redirect()->route('details.index', $tutorial->id)->with('success', 'Detail tutorial diperbarui.');
     }
 
-    public function destroy(Tutorial $tutorial, TutorialDetail $detail)
+    public function destroy(Tutorial $tutorial, TutorialDetail $detail)     //hapus detal tutorial
     {
         if ($detail->image) {
             Storage::disk('public')->delete($detail->image);

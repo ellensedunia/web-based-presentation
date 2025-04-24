@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 class TutorialController extends Controller
 {
-    public function adminDashboard()
+    public function adminDashboard()    //tampil dashboard admin
     {
         $tutorials = Tutorial::latest()->get();
 
@@ -24,7 +24,7 @@ class TutorialController extends Controller
         return view('admin.index', compact('tutorials', 'mataKuliah'));
     }
 
-    public function index()
+    public function index()     //tampil daftar tutorial
     {
         $tutorials = Tutorial::latest()->get();
         $token = Session::get('refreshToken');
@@ -37,7 +37,7 @@ class TutorialController extends Controller
         return view('tutorials.index', compact('tutorials', 'mataKuliah'));
     }
 
-    public function create()
+    public function create()    //form crrate new tutorial
     {
         $token = Session::get('refreshToken');
         $response = Http::withHeaders([
@@ -49,7 +49,7 @@ class TutorialController extends Controller
         return view('tutorials.create', compact('mataKuliah'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request)     //store ke db
     {
         $request->validate([
             'title' => 'required',
@@ -59,23 +59,23 @@ class TutorialController extends Controller
         $tutorial = new Tutorial();
         $tutorial->title = $request->title;
         $tutorial->kode_makul = $request->kode_makul;
-        $tutorial->unique_filename = Str::uuid(); // Generate UUID for unique filename
+        $tutorial->unique_filename = Str::uuid(); //generate UUID for unique filename
         $tutorial->unique_filename_finished = Str::uuid();
-        $tutorial->url_presentation = 'presentation/' . $tutorial->unique_filename; // Simpan dengan unique_filename
-        $tutorial->url_finished = 'finished/' . $tutorial->unique_filename_finished;     // Simpan dengan unique_filename
+        $tutorial->url_presentation = 'presentation/' . $tutorial->unique_filename; //simpan dengan unique_filename
+        $tutorial->url_finished = 'finished/' . $tutorial->unique_filename_finished;     //simpan dengan unique_filename
         $tutorial->creator_email = session('user_email');
         $tutorial->save();
 
         return redirect()->route('tutorials.index')->with('success', 'Tutorial berhasil ditambahkan.');
     }
 
-    public function destroy(Tutorial $tutorial)
+    public function destroy(Tutorial $tutorial)     //hapus tutorial
     {
         $tutorial->delete();
         return redirect()->back()->with('success', 'Tutorial dihapus');
     }
 
-    public function update(Request $request, Tutorial $tutorial)
+    public function update(Request $request, Tutorial $tutorial)    //update tutorial
     {
         if ($request->has('toggle_status')) {
             $tutorial->status = $tutorial->status === 'show' ? 'hide' : 'show';
@@ -89,12 +89,12 @@ class TutorialController extends Controller
             'kode_makul' => 'required',
         ]);
 
-        // Jika update field lain
+        //jika update field lain
         $tutorial->title = $request->title;
         $tutorial->kode_makul = $request->kode_makul;
         if (!$tutorial->unique_filename) {
-             $tutorial->unique_filename = Str::uuid();
-             $tutorial->url_presentation = 'presentation/' . $tutorial->unique_filename;
+            $tutorial->unique_filename = Str::uuid();
+            $tutorial->url_presentation = 'presentation/' . $tutorial->unique_filename;
             $tutorial->url_finished = 'finished/' . $tutorial->unique_filename;
         }
        
@@ -103,7 +103,7 @@ class TutorialController extends Controller
         return redirect()->route('tutorials.index')->with('success', 'Tutorial berhasil diupdate.');
     }
 
-    public function edit(Tutorial $tutorial)
+    public function edit(Tutorial $tutorial)    //edit tutorial
     {
         $token = Session::get('refreshToken');
         $response = Http::withHeaders([
