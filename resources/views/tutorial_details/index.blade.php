@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="p-6">
+<div class="container mx-auto px-4 py-6">
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-2xl font-bold">Detail Tutorial: {{ $tutorial->title }}</h1>
-        <a href="{{ route('details.create', $tutorial->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        <a href="{{ route('details.create', $tutorial->id) }}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm">
             Tambah Detail
         </a>
     </div>
 
-    @if(session('success'))
-        <div class="bg-green-100 text-green-800 p-2 rounded mb-4">
+    @if (session('success'))
+        <div class="bg-green-100 text-green-700 p-3 rounded mb-4">
             {{ session('success') }}
         </div>
     @endif
@@ -51,27 +51,25 @@
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="toggle_status" value="1">
-                                <button
-                                    type="submit"
-                                    class="px-2 py-1 rounded text-xs font-semibold {{ $detail->status === 'show' ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-gray-300 text-gray-700 hover:bg-gray-400' }}"
-                                >
+                                <button type="submit"
+                                    class="px-3 py-1 rounded text-white text-sm {{ $detail->status === 'show' ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-600 hover:bg-gray-700' }}">
                                     {{ $detail->status === 'show' ? 'Show' : 'Hide' }}
                                 </button>
                                 <input type="hidden" name="status" value="{{ $detail->status === 'show' ? 'hide' : 'show' }}">
                             </form>
                         </td>
                         <td class="px-4 py-2 flex gap-2">
-                            <a href="{{ route('details.edit', [$tutorial->id, $detail->id])  }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs">
+                            <a href="{{ route('details.edit', [$tutorial->id, $detail->id])  }}" class="bg-blue-500 hover:bg-blue-700 px-3 py-1 rounded text-white text-sm">
                             Edit </a>
                             <form method="POST" action="{{ route('details.destroy', [$tutorial->id, $detail->id]) }}" class="inline" onsubmit="return confirm('Hapus detail ini?')">
                                 @csrf @method('DELETE')
-                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-xs">Delete</button>
+                                <button type="submit" class="bg-red-500 hover:bg-red-700 px-3 py-1 rounded text-white text-sm">Delete</button>
                             </form>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8" class="px-4 py-4 text-center text-gray-500">Belum ada detail.</td>
+                        <td colspan="8" class="px-4 py-4 text-center text-gray-500">Belum ada detail</td>
                     </tr>
                 @endforelse
             </tbody>

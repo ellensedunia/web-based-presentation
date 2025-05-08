@@ -22,8 +22,8 @@
                 <th class="px-4 py-2">Kode MK</th>
                 <th class="px-4 py-2">Mata Kuliah</th>
                 <th class="px-4 py-2">Judul</th>
-                <th class="px-4 py-2">Status</th>
-                <th class="px-4 py-2">PDF</th>
+                <!--<th class="px-4 py-2">Status</th>-->
+                <th class="px-4 py-2">Status PDF</th>
                 <th class="px-4 py-2">URL Present</th>
                 <th class="px-4 py-2">URL Finished</th>
                 <th class="px-4 py-2">Aksi</th>
@@ -38,26 +38,26 @@
                     {{ collect($mataKuliah)->firstWhere('kdmk', $t->kode_makul)['nama'] ?? '-' }}
                 </td>
                 <td class="px-4 py-2">{{ $t->title }}</td>
-                <td class="px-4 py-2">
+                <!--<td class="px-4 py-2">
                     <span class="inline-block px-2 py-1 rounded text-white text-xs {{ $t->status === 'hide' ? 'bg-gray-500' : 'bg-green-600' }}">
                         {{ ucfirst($t->status ?? 'show') }}
                     </span>
-                </td>
+                </td> -->
                 <td class="px-4 py-2">
                     <form action="{{ route('tutorials.update', $t->id) }}" method="POST" onsubmit="return confirm('Ubah status tutorial ini?')">
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="toggle_status" value="1">
                         <input type="hidden" name="status" value="{{ $t->status }}">
-                        <button class="px-3 py-1 rounded text-white text-sm {{ $t->status == 'hide' ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-500 hover:bg-gray-600' }}">
-                            {{ $t->status == 'hide' ? 'Show' : 'Hide' }}
+                        <button class="px-3 py-1 rounded text-white text-sm {{ $t->status == 'hide' ? 'bg-gray-600 hover:bg-gray-700' : 'bg-green-600 hover:bg-green-700' }}">
+                            {{ $t->status == 'hide' ? 'Hide' : 'Show' }}
                         </button>
                     </form>
                 </td>
-                <td class="px-4 py-2 space-x-2">
+                <td class="px-4 py-2">
                     
                     <a href="{{ route('public.presentation', ['slug' => Str::slug($t->title), 'unique_filename' => $t->unique_filename]) }}"
-                       class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-1 px-2 rounded text-xs">
+                       class="bg-pink-500 hover:bg-pink-700 px-3 py-1 rounded text-white text-sm">
                         Presentation
                     </a>
                    
@@ -65,21 +65,21 @@
                 <td class="px-4 py-2">
                     
                     <a href="{{ route('public.finished', ['slug' => Str::slug($t->title), 'unique_filename_finished' => $t->unique_filename_finished]) }}"
-                       class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded text-xs">
+                       class="bg-yellow-500 hover:bg-yellow-700 px-3 py-1 rounded text-white text-sm">
                         PDF
                     </a>
                    
                 </td>
-                <td class="px-4 py-2 space-x-2">
-                    <a href="{{ route('tutorials.edit', $t->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs">
+                <td class="px-4 py-2">
+                    <a href="{{ route('tutorials.edit', $t->id) }}" class="bg-blue-500 hover:bg-blue-700 px-3 py-1 rounded text-white text-sm">
                         Edit
                     </a>
                     <form action="{{ route('tutorials.destroy', $t->id) }}" method="POST" class="inline" onsubmit="return confirm('Yakin hapus tutorial ini?')">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-xs">Delete</button>
+                        <button type="submit" class="bg-red-500 hover:bg-red-700 px-3 py-1 rounded text-white text-sm">Delete</button>
                     </form>
-                    <a href="{{ route('details.index', $t->id) }}" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-1 px-2 rounded text-xs">Detail</a>
+                    <a href="{{ route('details.index', $t->id) }}" class="bg-purple-500 hover:bg-purple-700 px-3 py-1 rounded text-white text-sm">Detail</a>
                 </td>
             </tr>
             @endforeach

@@ -11,7 +11,7 @@
         <div class="flex space-x-4">
             <a href="{{ route('admin.dashboard') }}" class="text-gray-700 hover:underline">Dashboard</a>
             <a href="{{ route('tutorials.index') }}" class="text-gray-700 hover:underline">Tutorial</a>
-            {{-- Tambah link ke tutorial detail jika mau --}}
+
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button class="text-red-500 hover:underline">Logout</button>

@@ -5,15 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style>
         body {
-            font-family: DejaVu, sans-serif; /* Font yang lebih kompatibel */
+            font-family: DejaVu, sans-serif; 
             font-size: 12pt;
-            line-height: 1.5; /* Spasi baris yang lebih baik */
+            line-height: 1.5; /* spasi baris */
         }
 
         .section {
             margin-bottom: 20px;
             padding: 10px;
-            border-bottom: 1px solid #eee; /* Garis pemisah untuk kejelasan */
+            border-bottom: 1px solid #eee; /* garis pemisah */
         }
 
         .code {
@@ -31,7 +31,7 @@
 
         p {
             margin-bottom: 10px;
-            text-align: justify; /* Rata kiri-kanan untuk kerapian */
+            text-align: justify; /* rata kiri-kanan */
             white-space: pre-line;
         }
 

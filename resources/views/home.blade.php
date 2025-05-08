@@ -24,7 +24,7 @@
     <!-- Konten -->
     <main class="p-6 max-w-5xl mx-auto">
         <h1 class="text-2xl font-bold mb-6 text-gray-800 flex items-center gap-2">
-             Daftar Tutorial Publik
+             Daftar Tutorial 
         </h1>
 
         @if($tutorials->count())
@@ -36,7 +36,7 @@
                             <i class="fas fa-book mr-1"></i> Kode MK: {{ $t->kode_makul }}
                         </p>
                         <p class="text-sm text-gray-600 mb-1">
-                            <i class="fas fa-user mr-1"></i> Creator: {{ $t->creator_email }}
+                            <i class="fas fa-user mr-1"></i> Kreator: {{ $t->creator_email }}
                         </p>
                         <p class="text-xs text-gray-400 mb-4">
                             <i class="fas fa-clock mr-1"></i> {{ $t->created_at->diffForHumans() }}
@@ -61,9 +61,9 @@
         @else
             <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-5 rounded shadow">
                 <h3 class="font-bold text-lg mb-1">
-                    <i class="fas fa-info-circle mr-1"></i> Belum ada materi.
+                    <i class="fas fa-info-circle mr-1"></i> Belum ada materi
                 </h3>
-                <p class="text-sm">Silakan cek secara berkala.</p>
+                <p class="text-sm">Silakan cek secara berkala</p>
             </div>
         @endif
     </main>

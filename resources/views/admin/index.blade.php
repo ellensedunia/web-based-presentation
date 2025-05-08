@@ -33,10 +33,10 @@
         @foreach ($tutorials as $t)
             <li class="bg-white p-4 rounded-lg shadow flex justify-between items-start">
                 <div>
-                    <h3 class="text-lg font-semibold text-blue-700">{{ $t->title }}</h3>
-                    <p class="text-sm text-gray-500">Kode MK: {{ $t->kode_makul }}</p>
-                    <p class="text-sm text-gray-500">Creator: <span class="text-gray-700">{{ $t->creator_email }}</span></p>
-                    <p class="text-xs text-gray-400">Dibuat: {{ $t->created_at->diffForHumans() }}</p>
+                    <h3 class="text-lg font-bold text-black-700">{{ $t->title }}</h3>
+                    <p class="text-sm text-gray-700">Kode MK: {{ $t->kode_makul }}</p>
+                    <p class="text-sm text-gray-700">Kreator: {{ $t->creator_email }}</p>
+                    <p class="text-xs text-gray-500">Dibuat: {{ $t->created_at->diffForHumans() }}</p>
                 </div>
                 <div class="text-right space-y-1">
                     <a href="{{ route('public.presentation', ['slug' => Str::slug($t->title), 'unique_filename' => $t->unique_filename]) }}" 
@@ -55,9 +55,9 @@
     <div class="bg-yellow-100 text-yellow-800 border-l-4 border-yellow-400 p-4 rounded shadow">
         <p class="font-semibold">
             <i class="fas fa-exclamation-circle mr-2"></i>
-            Belum ada materi tutorial yang tersedia.
+            Belum ada materi tutorial yang tersedia
         </p>
-        <p class="text-sm">Silakan tambahkan materi.</p>
+        <p class="text-sm">Silakan tambahkan materi</p>
     </div>
 @endif
 

@@ -43,14 +43,12 @@ class TutorialDetailController extends Controller
             'status' => 'required|in:show,hide',
         ]);
 
+        $data['tutorial_id'] = $tutorial->id;
+        $data['kode_makul'] = $tutorial->kode_makul; // Pastikan kode_makul juga masuk ke $data
+
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('tutorial_images', 'public');
         }
-        $detail = new TutorialDetail();
-        $detail->tutorial_id = $tutorial->id;
-        $detail->kode_makul = $tutorial->kode_makul; 
-        $detail->text = $request->text;
-        $data['tutorial_id'] = $tutorial->id;
 
         TutorialDetail::create($data);
 

@@ -9,7 +9,7 @@
     @vite('resources/css/app.css')
 </head>
 <body class="p-8 bg-gray-50">
-    <h1 class="text-2xl font-bold mb-4">Tambah Tutorial Baru</h1>
+    <h1 class="text-2xl font-bold mb-4">Tambah Tutorial</h1>
 
     @if ($errors->any())
         <div class="bg-red-100 text-red-800 p-2 mb-4 rounded">
@@ -21,11 +21,10 @@
         </div>
     @endif
 
-    <form action="{{ route('tutorials.store') }}" method="POST" class="space-y-4 bg-white p-4 rounded shadow max-w-xl">
+    <form action="{{ route('tutorials.store') }}" method="POST" class="space-y-4 bg-white p-4 rounded shadow">
         @csrf
         <input name="title" placeholder="Judul Tutorial" required
-               value="{{ old('title') }}"
-               class="w-full border px-3 py-2 rounded" />
+               value="{{ old('title') }}" class="w-full border px-3 py-2 rounded" />
 
         <select name="kode_makul" required class="w-full border px-3 py-2 rounded">
             <option value="">Pilih Mata Kuliah</option>
